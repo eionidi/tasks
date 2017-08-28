@@ -1,14 +1,9 @@
-def random_string_array
-  array = []
-  rng = [*12..45].sample
-  rng.times do
-    syms = ['a'..'z'].map{ |range| range.to_a }.flatten
-    length = [*15...45].sample
-    s = ''
-    length.times do
-      s << syms[ rand(syms.size) ]
-    end
-    array << s
-  end
-  array
+SYMS = ['a'..'z'].map{ |range| range.to_a }.flatten
+def random_string(length)
+  length.times.inject('') { |string, _letter| string << SYMS[rand(SYMS.size - 1)] }
 end
+
+def random_string_array
+  rand(12..45).times.map { random_string(rand(15..45)) }
+end
+
